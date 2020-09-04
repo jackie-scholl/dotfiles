@@ -16,6 +16,7 @@ import json
 import sys
 import socket
 import io
+from pathlib import Path
 
 # Python 2/3 compatability.
 try:
@@ -34,6 +35,14 @@ else:
 
 DOTFILES_FILENAME = "dotfiles.json"
 
+def get_dotfiles():
+    """
+    Reads out all the files in the directory, except those that should not be
+    used, like .git/ and this file (setup.py)
+    """
+    return [str(x) for x
+        in (*Path('.config').iterdir(), *Path('.').iterdir())
+        if str(x)[0]=='.' and str(x) != '.git' and str(x) != '.config']
 
 def load_dotfiles(filename):
     """
@@ -332,7 +341,7 @@ class Dotfiles:
 
 
 def main():
-    dotfiles = Dotfiles()
+    dotfiles = Dotfiles(get_dotfiles())
     report = dotfiles.link_all()
     json.dump(report, fp=sys.stdout, indent=2)
     print()
