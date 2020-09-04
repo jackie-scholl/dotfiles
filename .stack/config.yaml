@@ -8,10 +8,9 @@
 # See https://docs.haskellstack.org/en/stable/yaml_configuration/#templates
 templates:
   params:
-   author-name: Rebecca Turner
-   author-email: rbt@sent.as
-   copyright: © 2019 Rebecca Turner
-   github-username: 9999years
+   author-name: Jackie Scholl
+   author-email: jackie.h.scholl@gmail.com
+   github-username: raptortech-js
 
 # The following parameter specifies stack's output styles; STYLES is a
 # colon-delimited sequence of key=value, where 'key' is a style name and

@@ -24,7 +24,3 @@ lint:
 	bandit setup.py || true
 	flake8 setup.py --doctests --max-line-length=135 || true
 	pydocstyle --convention=google setup.py || true
-
-# Install vscode extensions
-vscode:
-	cd ./.config/Code/User && ./install-extensions.sh

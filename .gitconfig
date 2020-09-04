@@ -1,27 +1,14 @@
-[filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	required = true
-	clean = git-lfs clean -- %f
-	process = git-lfs filter-process
 [user]
-	name = Rebecca Turner
-	email = rbt@sent.as
+	name = Jackie Scholl
+	email = jackie.h.scholl@gmail.com
 [push]
 	default = simple
 	followTags = true
-[credential]
-	helper = libsecret
-	modalPrompt = false ; consider flipping this if you're having trouble...
-	canFallBackToInsecureStore = true
 [core]
-	editor = nvim
+	editor = micro
 	autocrlf = false
 	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes_global
-	eol = lf
-	pager = delta --line-numbers
-[interactive]
-	diffFilter = delta --color-only
 [merge]
 	conflictstyle = diff3
 [diff]
@@ -30,17 +17,6 @@
 	prompt = false
 [rerere]
 	enabled = true
-[alias]
-	c = commit
-	co = commit
-	p = pull
-	pu = push
-	last = log -1 HEAD
-	graph = log --all --decorate --oneline --graph
-	st = status --short --branch
-	a = add --verbose
-[hub]
-	protocol = https
 [branch]
 	autosetupmerge = always
 [branch.master]
