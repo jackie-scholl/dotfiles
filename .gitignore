@@ -1,2 +1,4 @@
 /.config/fish/fish_variables
 /.config/fish/fishfile
+/.config/micro/backups
+/.config/micro/buffers
