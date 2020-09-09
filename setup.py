@@ -120,7 +120,7 @@ class Dotfiles:
         report = []
 
         def link(path, dest):
-            result = {"path": str(path), "dest": str(dest)]}
+            result = {"path": str(path), "dest": str(dest)}
             
             try:
                 dest.symlink_to(path, target_is_directory=dest.is_dir())
