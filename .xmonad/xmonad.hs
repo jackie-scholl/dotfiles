@@ -36,9 +36,9 @@ main = xmonad =<< (myStatusBar $ docks myConfig )--`additionalKeysP` myKeymap {-
 myConfig = def
         { manageHook = manageHook kde4Config <+> manageDocks <+> (isFullscreen --> doFullFloat) <+> manageHook def
         , layoutHook = myLayouts
-        , keys = \c -> myShortcutMaps1 <> mkKeymap c myKeymap <> keys defaultConfig c
+        , keys = \c -> (M.singleton (mod4Mask, xK_Left) $ Paste.sendKey controlMask xK_Page_Up) <> myShortcutMaps1 <> mkKeymap c myKeymap <> keys defaultConfig c
         --, keys = \c -> mkKeymap c myKeymap
-        , startupHook = return () >> checkKeymap myConfig myKeymap >> blah2
+        , startupHook = return () >> checkKeymap myConfig myKeymap >> blah2 >> (Paste.sendKey controlMask xK_Page_Up)
         , handleEventHook = handleEventHook defaultConfig <+> docksEventHook
         , terminal = "konsole"
         , focusFollowsMouse = False
@@ -104,26 +104,7 @@ audioKeys = [
     ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
     ]
 
-{-}
-data WindowType = Firefox | NotFirefox
-data MoveType = MLeft | MRight
 
-changeTab :: MoveType -> WindowType -> X ()
-changeTab moveType Firefox = sendKey controlMask $ 
-    case moveType of
-        MLeft  -> xK_Page_Up
-        MRight -> xK_Page_Down
-changeTab moveType NotFirefox = sendKey mod1Mask $
-    case moveType of
-        MLeft  -> xK_Left
-        MRight -> xK_Right
-
-queryAndChangeTab :: MoveType -> X ()
-queryAndChangeTab moveType = withFocused $ (>>= changeTab moveType ) . runQuery firefoxQuery
-    where
-        firefoxQuery :: Query WindowType
-        firefoxQuery = fmap (\x -> if x then Firefox else NotFirefox) $ className =? "Firefox" -- XMonad.ManageHook
--}
 
 
 invertMapOfMaps :: forall a b c. (Ord a, Ord b) => M.Map a (M.Map b c) -> M.Map b (M.Map a c)
@@ -149,7 +130,7 @@ shortcutMapper :: M.Map String (M.Map Keystroke Keystroke) -> M.Map Keystroke (X
 shortcutMapper shortcutMap = M.mapWithKey sendMappedKeystroke $ invertMapOfMaps shortcutMap
 
 sendMappedKeystroke :: Keystroke -> M.Map String Keystroke -> X ()
-sendMappedKeystroke ks destMap = getKeystroke >>= produceOriginalInput showKey >>= sendKey2
+sendMappedKeystroke ks destMap = getKeystroke >>= produceOriginalInput sendKey2 >>= showKey
     where
         getKeystroke :: X Keystroke
         getKeystroke = fromMaybe ks <$> possibleKeystroke
@@ -169,8 +150,8 @@ withFocused' f = withWindowSet $ runOnFocusedWindow
 myShortcutMaps :: M.Map String (M.Map Keystroke Keystroke)
 myShortcutMaps = M.fromList
     [
-        ("Firefox", firefoxShortcuts),
-        ("konsole", firefoxShortcuts)
+        ("Firefox", firefoxShortcuts)
+        , ("konsole", firefoxShortcuts)
     ]
 
 myShortcutMaps1 :: M.Map Keystroke (X ())
@@ -180,11 +161,11 @@ myShortcutMaps1 = shortcutMapper myShortcutMaps
 firefoxShortcuts :: M.Map Keystroke Keystroke
 firefoxShortcuts = M.fromList $ [
     ((mod1Mask, xK_Right), (controlMask, xK_Page_Down)),
-    ((mod1Mask, xK_Left), (controlMask, xK_Page_Up))
+    ((mod1Mask, xK_Left ), (controlMask, xK_Page_Up  ))
     ]
 
 withMask :: KeyMask -> Keystroke -> Keystroke
-withMask addMask (keyMask, keySym) = undefined 
+withMask addMask (keyMask, keySym) = (keyMask .|. addMask, keySym)
 
 
 {-}
