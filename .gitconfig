@@ -1,29 +1,5 @@
-[user]
-	name = Jackie Scholl
-	email = jackie.h.scholl@gmail.com
-[push]
-	default = simple
-	followTags = true
-[core]
-	editor = micro
-	autocrlf = false
-	excludesfile = ~/.gitignore_global
-	attributesfile = ~/.gitattributes_global
-[merge]
-	conflictstyle = diff3
-[diff]
-	algorithm = patience
-[difftool]
-	prompt = false
-[rerere]
-	enabled = true
-[branch]
-	autosetupmerge = always
-[branch.master]
-	remote = origin
-[gui]
-	encoding = utf-8
 [pull]
 	rebase = false
-[init]
-	defaultBranch = main
+[user]
+	email = jackie.h.scholl@gmail.com
+	name = Jackie Scholl
