@@ -20,14 +20,12 @@ import XMonad.Util.EZConfig
 
 import Shortcuts
 import StatusBar
+import Layout
 
 main = xmonad =<< (myStatusBar $ docks myConfig )
 
-myDzenFlags :: String 
-myDzenFlags = "-e onstart lower -w 800 -h 100"
-
 myConfig = def
-        { manageHook = manageHook kde4Config {-<+> manageDocks <+> (isFullscreen --> doFullFloat)-} <+> manageHook def
+        { manageHook = {-manageDocks <+> (isFullscreen --> doFullFloat) <+>-} manageHook def
         , layoutHook = myLayouts
         , keys = \c ->  myShortcuts c <> keys defaultConfig c
         --, startupHook = return () >> checkKeymap myConfig audioKeys
@@ -38,17 +36,9 @@ myConfig = def
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         }
 
-mySpacing = spacingRaw True emptyBorder False smallBorder True
-    where
-        emptyBorder = Border 0 0 0 0
-        smallBorder = Border 5 5 5 5
-        largeBorder = Border 30 30 30 30
-        
-myLayouts = avoidStruts $ mySpacing $ 
-            Tall 1 (3/100) (1/3) ||| Mirror (Tall 1 (3/100) (3/5))
+myStatusBar = statusBar "xmobar" myXmobarPP $ const (noModMask, xK_VoidSymbol)
 
+myXmobarPP = xmobarPP {ppTitle = xmobarColor "green" "" . shorten 50, ppOrder = third}
 
-myStatusBar = statusBar "dzen2" myPrettyPrinter $ const (noModMask, xK_VoidSymbol)
-
-
+third (a:b:c:x) = [c]
 
