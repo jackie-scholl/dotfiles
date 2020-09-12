@@ -3,7 +3,7 @@
 /.config/micro/backups
 /.config/micro/buffers
 /.xmonad/xmonad.errors
-/.xmonad/xmonad.hi
-/.xmonad/xmonad.o
 /.xmonad/xmonad-*
+*.hi
+*.o
 
