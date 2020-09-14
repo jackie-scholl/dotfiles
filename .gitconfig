@@ -1,5 +1,7 @@
 [pull]
-	rebase = false
 [user]
 	email = jackie.h.scholl@gmail.com
 	name = Jackie Scholl
+	rebase = true
+[init]
+	defaultBranch = main
