@@ -4,8 +4,8 @@
 /.config/micro/buffers
 /.xmonad/xmonad.errors
 /.xmonad/xmonad-*
-/.stack/pantry/stack.sqlite3*
-/.stack/
+/.stack/pantry/
+/.stack/stack.sqlite3*
 *.hi
 *.o
 
