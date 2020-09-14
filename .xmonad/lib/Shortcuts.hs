@@ -54,7 +54,7 @@ windowingKeys config = includeModifier `M.mapKeys` (focusSpaceAndWindow <$> inde
 
 audioKeys :: XConfig l -> M.Map Keystroke (X ())
 audioKeys config = EZConfig.mkKeymap config [
-    ("<XF86AudioMute>",        spawn "amixer -q  set Master mute"),
+    ("<XF86AudioMute>",        spawn "amixer -q sset Master toggle"),
     ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-"),
     ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+"),
     ("M-y", swapNextScreen)
