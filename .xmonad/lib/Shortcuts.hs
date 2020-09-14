@@ -8,6 +8,7 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.EZConfig as EZConfig
 --import XMonad.Util.Dzen
 import qualified XMonad.Util.Paste as Paste
+import XMonad.Actions.CycleWS
 
 import qualified Data.List as List 
 import Data.Foldable (fold)
@@ -55,7 +56,8 @@ audioKeys :: XConfig l -> M.Map Keystroke (X ())
 audioKeys config = EZConfig.mkKeymap config [
     ("<XF86AudioMute>",        spawn "amixer -q  set Master mute"),
     ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-"),
-    ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+    ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+"),
+    ("M-y", swapNextScreen)
     ]
 
 

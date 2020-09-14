@@ -2,6 +2,8 @@ Config {
 	  font = "xft:Iosevka-12:bold"
 	, borderColor = "black"
 	, border = BottomB
+	, pickBroadest = True
+	, persistent = True
 	, bgColor = "white"
 	, fgColor = "black"
 	, alpha = 255
