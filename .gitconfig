@@ -1,4 +1,5 @@
 [pull]
+	rebase = true
 [user]
 	email = jackie.h.scholl@gmail.com
 	name = Jackie Scholl

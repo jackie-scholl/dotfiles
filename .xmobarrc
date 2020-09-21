@@ -23,7 +23,8 @@ Config {
 	                , Run StdinReader
 	                , Run Date "%a %b %_d %Y %-I:%M:%S %p" "date" 10
 					, Run Weather "KBOS" ["-t","<tempF>F <windMph><windCardinal>  <skyCondition>","-L","40","-H","80","--normal","green","--high","red","--low","lightblue"] 36000
-					, Run Com "fish" ["/home/jackie/Documents/gcal-status/gs.fish"] "agenda" 600
+					--, Run Com "fish" ["/home/jackie/Documents/gcal-status/gs.fish"] "agenda" 600
+					, Run Com "/home/jackie/.local/bin/gcal-haskell-exe" [] "agenda" 600
 	                ]
 	, template = "%cpu% - %multicpu% | %memory% | %default:Master% | %locks% | %agenda%}  %StdinReader% {<fc=#ee9a00>%date%</fc> | %KBOS% BOS                         "
 	, lowerOnStart = False

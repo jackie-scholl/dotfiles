@@ -18,13 +18,15 @@ import XMonad.Operations
 --import XMonad.Util.Dzen
 import XMonad.Util.EZConfig
 
+import XMonad.Hooks.EwmhDesktops
+
 import Shortcuts
 import StatusBar
 import Layout
 
 main = xmonad =<< (myStatusBar $ docks myConfig )
 
-myConfig = def
+myConfig = ewmh $ def
         { manageHook = {-manageDocks <+> (isFullscreen --> doFullFloat) <+>-} manageHook def
         , layoutHook = myLayouts
         , keys = \c ->  myShortcuts c <> keys defaultConfig c

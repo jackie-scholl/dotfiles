@@ -1,7 +1,5 @@
 {
     "colorscheme": "bubblegum",
     "parsecursor": true,
-    "saveundo": true,
-    "tabmovement": true,
-    "tabstospaces": true
+    "saveundo": true
 }
