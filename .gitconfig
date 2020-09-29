@@ -8,5 +8,3 @@
 	defaultBranch = main
 [merge]
 	renamelimit = 10000
-[credential]
-	helper = cache
