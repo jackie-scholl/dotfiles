@@ -32,17 +32,10 @@ set -gx CPPFLAGS  "$CFLAGS"
 # Fish seems to overwrite these if the'yre regular functions in `./functions`,
 # so we keep them here.
 function ls --description 'list files' --wraps exa
-    if command -v exa >/dev/null
-        command exa -l $argv
-    else
-        command ls -l $argv
-    end
+    command exa -a $argv
 end
-
-function ll --description 'list files' --wraps exa
-    ls -la $argv
-end
-
 
 # Adding arguments
 abbr -g df 'df -h'
+
+abbr -g edit $EDITOR
