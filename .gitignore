@@ -2,10 +2,15 @@
 /.config/fish/fishfile
 /.config/micro/backups
 /.config/micro/buffers
+/.config/kglobalshortcutsrc
 /.xmonad/xmonad.errors
 /.xmonad/xmonad-*
 /.stack/pantry/
 /.stack/stack.sqlite3*
+/.stack/snapshots
+/.stack/templates
+/.stack/setup*
+/.stack/global*
 *.hi
 *.o
 
