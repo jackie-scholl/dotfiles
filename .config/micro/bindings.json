@@ -1,4 +1,5 @@
 {
     "Alt-/": "lua:comment.comment",
+    "CtrlB": "Save,command:run just",
     "CtrlUnderscore": "lua:comment.comment"
 }
