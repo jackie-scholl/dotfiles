@@ -1,5 +1,5 @@
 Config {
-	  font = "xft:Iosevka-12:bold"
+	  font = "xft:Hack-12:Bold"
 	, borderColor = "black"
 	, border = BottomB
 	, pickBroadest = True
