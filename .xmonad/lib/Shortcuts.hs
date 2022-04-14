@@ -21,7 +21,7 @@ import System.IO
 type Keystroke = (KeyMask, KeySym)
 
 myShortcuts :: XConfig l -> M.Map Keystroke (X ())
-myShortcuts config = windowingKeys config <> audioKeys config <> myShortcutMaps
+myShortcuts config = {-windowingKeys config <>-} audioKeys config <> myShortcutMaps
 
 windowingKeys :: XConfig l -> M.Map Keystroke (X ())
 windowingKeys config = includeModifier `M.mapKeys` (focusSpaceAndWindow <$> indexAllKeys myWorkspaceKeyMapping)
@@ -56,7 +56,7 @@ audioKeys :: XConfig l -> M.Map Keystroke (X ())
 audioKeys config = EZConfig.mkKeymap config [
     ("<XF86AudioMute>",        spawn "amixer -q sset Master toggle"),
     ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-"),
-	("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+"),
+    ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+"),
     ("M-y", swapNextScreen),
     ("M-n", spawn "sleep 0.5 && xset dpms force off")
     ]

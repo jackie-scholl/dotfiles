@@ -19,6 +19,7 @@ Config {
 	                , Run Swap [] 10
 	                , Run DynNetwork ["-t","Network: <rxvbar> D;<txvbar> U","-S","True","-w","6"] 10
 	                , Run Volume "default" "Master" [] 10
+	                , Run Battery [] 30
 	                , Run Locks
 	                , Run StdinReader
 	                , Run Date "%a %b %_d %Y %-I:%M:%S %p" "date" 10
@@ -26,6 +27,6 @@ Config {
 					--, Run Com "fish" ["/home/jackie/Documents/gcal-status/gs.fish"] "agenda" 600
 					, Run Com "/home/jackie/.local/bin/gcal-haskell-exe" [] "agenda" 600
 	                ]
-	, template = "%cpu% - %multicpu% | %memory% | %default:Master% | %locks% | %agenda%}  %StdinReader% {<fc=#ee9a00>%date%</fc> | %KBOS% BOS                         "
+	, template = "%cpu% - %multicpu% | %memory% | %default:Master% | %battery% | %locks% | %agenda%}  %StdinReader% {<fc=#ee9a00>%date%</fc> | %KBOS% BOS                         "
 	, lowerOnStart = False
 	}

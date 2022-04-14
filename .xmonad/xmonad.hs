@@ -26,15 +26,15 @@ import Layout
 
 main = xmonad =<< (myStatusBar $ docks myConfig )
 
-myConfig = ewmh $ def
-        { manageHook = {-manageDocks <+> (isFullscreen --> doFullFloat) <+>-} manageHook def
-        , layoutHook = myLayouts
-        , keys = \c ->  myShortcuts c <> keys defaultConfig c
+myConfig = ewmh $ docks $ def
+        { --manageHook = {-manageDocks <+> (isFullscreen --> doFullFloat) <+>-} manageHook def
+        --, layoutHook = myLayouts
+        keys = \c ->  myShortcuts c <> keys def c
         --, startupHook = return () >> checkKeymap myConfig audioKeys
-        , handleEventHook = handleEventHook defaultConfig <+> docksEventHook
+        --, handleEventHook = handleEventHook defaultConfig <+> docksEventHook
         , terminal = "konsole"
-        , focusFollowsMouse = False
-        , workspaces = ["left", "right"] -- our goal is to not use workspaces
+        --, focusFollowsMouse = False
+        --, workspaces = ["left", "right"] -- our goal is to not use workspaces
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         }
 
