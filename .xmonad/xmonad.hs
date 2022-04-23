@@ -9,7 +9,9 @@ import XMonad.Layout.MultiColumns
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutModifier (ModifiedLayout)
-    
+
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -24,9 +26,9 @@ import Shortcuts
 import StatusBar
 import Layout
 
-main = xmonad =<< (myStatusBar $ docks myConfig )
+main = xmonad myConfig
 
-myConfig = ewmh $ docks $ def
+myConfig = withSB myStatusBar . ewmh . docks $ def
         { --manageHook = {-manageDocks <+> (isFullscreen --> doFullFloat) <+>-} manageHook def
         --, layoutHook = myLayouts
         keys = \c ->  myShortcuts c <> keys def c
@@ -38,8 +40,9 @@ myConfig = ewmh $ docks $ def
         , modMask = mod4Mask     -- Rebind Mod to the Windows key
         }
 
-myStatusBar = statusBar "xmobar" myXmobarPP $ const (noModMask, xK_VoidSymbol)
+myStatusBar = statusBarProp "xmobar" (pure myXmobarPP) -- $ const (noModMask, xK_VoidSymbol)
 
+myXmobarPP :: PP
 myXmobarPP = xmobarPP {ppTitle = xmobarColor "green" "" . shorten 50, ppOrder = third}
 
 third (a:b:c:x) = [c]
