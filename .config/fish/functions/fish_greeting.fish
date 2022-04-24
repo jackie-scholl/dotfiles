@@ -5,7 +5,7 @@ function fish_greeting
             case 24 00 01 02  # 11pm-2am
                 echo -sn (set_color --bold red) "Please go to sleep immediately, Jackie! 🛑 💤 😠  "
             case 05 06 07 # 5am-8am
-                echo -sn (set-color --bold green) "  You're up early, miss! 🌞 "
+                echo -sn (set_color --bold green) "  You're up early, miss! 🌞 "
             case 08 09 10 11  # 8am-noon
                 echo -sn (set_color --bold green) "  Good morning, Jackie! 🌞  "
             case 12 13 14  # noon-3pm
