@@ -10,7 +10,7 @@ import qualified XMonad.Util.EZConfig as EZConfig
 import qualified XMonad.Util.Paste as Paste
 import XMonad.Actions.CycleWS
 
-import qualified Data.List as List 
+import qualified Data.List as List
 import Data.Foldable (fold)
 import qualified Data.Map.Strict as M
 import qualified Data.Set as S
@@ -30,8 +30,8 @@ windowingKeys config = includeModifier `M.mapKeys` (focusSpaceAndWindow <$> inde
         myWorkspaceKeyMapping = [("left", [xK_1..xK_5]), ("right", [xK_6..xK_9])]
 
         indexList :: (Ord a) => [a] -> M.Map a Int
-        indexList xs = M.fromList $ zip xs [0..] 
-        
+        indexList xs = M.fromList $ zip xs [0..]
+
         indexKeys :: (String, [KeySym]) -> M.Map KeySym (String, Int)
         indexKeys (x, y) = pair x <$> indexList y
 
@@ -43,7 +43,7 @@ windowingKeys config = includeModifier `M.mapKeys` (focusSpaceAndWindow <$> inde
 
         includeModifier :: KeySym -> Keystroke
         includeModifier = pair (XMonad.modMask config)
-        
+
         focusSpaceAndWindowHelper :: String -> Int -> WindowSet -> WindowSet
         focusSpaceAndWindowHelper myWorkspace windowNumber windowSet = focused
             where
@@ -54,9 +54,9 @@ windowingKeys config = includeModifier `M.mapKeys` (focusSpaceAndWindow <$> inde
 
 audioKeys :: XConfig l -> M.Map Keystroke (X ())
 audioKeys config = EZConfig.mkKeymap config [
-    ("<XF86AudioMute>",        spawn "amixer -q sset Master toggle"),
-    ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-"),
-    ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+"),
+    ("<XF86AudioMute>",        spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"),
+    ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume $(pactl get-default-sink) -2%"),
+    ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume $(pactl get-default-sink) +2%"),
     ("M-y", swapNextScreen),
     ("M-n", spawn "sleep 0.5 && xset dpms force off")
     ]
@@ -115,7 +115,7 @@ produceOriginalInput :: Functor f => (a -> f ()) -> (a -> f a)
 produceOriginalInput action input = fmap (const input) (action input)
 
 both :: (a -> b) -> (a, a) -> (b, b)
-both f (x, y) = (f x, f y) 
+both f (x, y) = (f x, f y)
 
 invertMapOfMaps :: forall a b c. (Ord a, Ord b) => M.Map a (M.Map b c) -> M.Map b (M.Map a c)
 invertMapOfMaps myMap = M.fromSet bToACMap bset

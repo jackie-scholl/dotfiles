@@ -43,3 +43,5 @@ end
 abbr -g df 'df -h'
 
 abbr -g edit $EDITOR
+
+direnv hook fish | source

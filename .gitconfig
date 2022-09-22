@@ -8,3 +8,7 @@
 	defaultBranch = main
 [merge]
 	renamelimit = 10000
+[push]
+	autoSetupRemote = true
+[rerere]
+	enabled = true

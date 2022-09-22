@@ -1,5 +1,11 @@
 {
     "colorscheme": "bubblegum",
+    "lsp.server": "haskell=haskell-language-server-wrapper -l hls.log,python=pyls,go=gopls,typescript=deno lsp={\"importMap\": \"./import_map.json\"}",
     "parsecursor": true,
-    "saveundo": true
+    "rmtrailingws": true,
+    "saveundo": true,
+    "softwrap": true,
+    "tabmovement": true,
+    "tabsize": 2,
+    "tabstospaces": true
 }
