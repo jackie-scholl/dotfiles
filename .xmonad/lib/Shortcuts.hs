@@ -57,7 +57,7 @@ audioKeys config = EZConfig.mkKeymap config [
     ("<XF86AudioMute>",        spawn "pactl set-sink-mute $(pactl get-default-sink) toggle"),
     ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume $(pactl get-default-sink) -2%"),
     ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume $(pactl get-default-sink) +2%"),
-    ("M-y", swapNextScreen),
+    ("M-y", spawn "konsole --tabs-from-file ~/konsole_layout1 &; konsole --tabs-from-file ~/konsole_layout2"),
     ("M-n", spawn "sleep 0.5 && xset dpms force off")
     ]
 

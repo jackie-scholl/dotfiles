@@ -1,5 +1,5 @@
 Config {
-	  font = "xft:Hack-12:Bold"
+	  font = "xft:Source Code Pro:size=20"
 	, borderColor = "black"
 	, border = BottomB
 	, pickBroadest = True
@@ -10,13 +10,12 @@ Config {
 	, position = TopW L 100
 	, sepChar = "%"
 	, alignSep = "}{"
-	, commands = [ 
+	, commands = [
 	    Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-    , Run MultiCpu ["-t","<autovbar>"] 10
-	  , Run TopProc ["-t","<name1> <cpu1> <mem1>"] 10
-	  , Run DiskIO [("/", "<read>/<write>")] [] 10
-	  , Run Memory ["-t","Mem: <usedratio>%"] 10
-	  , Run Swap [] 10
+    --, Run MultiCpu ["-t","<autovbar>"] 10
+    , Run CpuFreq ["-t", "Freq:<avg> GHz", "-L", "1", "-H", "6",
+                   "-l", "red", "-n","green", "-h", "red"] 50
+	  , Run Memory ["-t","Mem: <usedratio>%", "-h", "red"] 10
 	  , Run DynNetwork ["-t","Network: <rxvbar> D;<txvbar> U","-S","True","-w","6"] 10
 	  , Run Wireless "wlp170s0" [] 30
 	  , Run Volume "default" "Master" [] 10
@@ -25,9 +24,12 @@ Config {
 	  , Run StdinReader
 	  , Run Date "%a %b %_d %Y %-I:%M:%S %p" "date" 10
 		, Run Weather "KSEA" ["-t","<tempF>F <windMph><windCardinal>  <skyCondition>","-L","40","-H","80","--normal","green","--high","red","--low","lightblue"] 36000
+		-- , Run Weather "KBOS" ["-t","<tempF>F <windMph><windCardinal>  <skyCondition>","-L","40","-H","80","--normal","green","--high","red","--low","lightblue"] 36000
   --, Run Com "fish" ["/home/jackie/Documents/gcal-status/gs.fish"] "agenda" 600
-		, Run Com "/home/jackie/.local/bin/gcal-haskell-exe" [] "agenda" 600
+		-- , Run Com "/home/jackie/.local/bin/gcal-haskell-exe" [] "agenda" 600
+		-- ,  Run Brightness ["-D", "intel_backlight", "-t", "<bar>"] 60
 	]
-	, template = "%cpu% - %multicpu% | %memory% | %default:Master% | %battery% | %locks% | %wi% | %agenda%}  %StdinReader% {<fc=#ee9a00>%date%</fc> | %KSEA% Seattle  "
+	 , template = "%cpu% - %cpufreq% | %memory% | %default:Master% | %battery% | %bright% }  %StdinReader% {<fc=#ee9a00>%date%</fc> | %KSEA% Seattle  "
+	--, template = "%cpu% - %multicpu% | %memory% | %default:Master% | %battery% | %locks% }  %StdinReader% {<fc=#ee9a00>%date%</fc> | %KBOS% Boston  "
 	, lowerOnStart = False
 	}

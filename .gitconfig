@@ -12,3 +12,5 @@
 	autoSetupRemote = true
 [rerere]
 	enabled = true
+[maintenance]
+	repo = /home/jackie/mercury/mercury-web-backend
