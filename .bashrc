@@ -43,3 +43,5 @@ export LC_CTYPE=en_US.UTF-8
 alias alia_shell='sudo bash -c "source ~/ssh-agent-data && $(which fish)"'
 
 complete -C /usr/local/bin/vault vault
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

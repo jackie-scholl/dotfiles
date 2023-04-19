@@ -1,7 +1,7 @@
 {
     "colorcolumn": 120,
     "colorscheme": "bubblegum",
-    "lsp.server": "haskell=haskell2-language-server-wrapper --lsp -l .devel-logs/hls.log,python=pyls,go=gopls,typescrizz=typescript-language-server --stdio --tsserver-log-file",
+    "lsp.server": "python=pyls,go=gopls,typescrizz=typescript-language-server --stdio --tsserver-log-file",
     "lsp.tabcompletion": false,
     "mkparents": true,
     "parsecursor": true,
